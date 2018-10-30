@@ -40,11 +40,14 @@ public class nuevo extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            String var="p";
+            String var=request.getParameter("action");
             switch (var) {
-                case "p":
-                    caso1(request,response);
+                case "cargar":
+                    cargar(request,response);
                     break;
+                case "buscar":
+                     buscar(request,response);
+                    
                 default:
                     throw new AssertionError();
             }
@@ -94,16 +97,42 @@ public class nuevo extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void caso1(HttpServletRequest request, HttpServletResponse response) {
+    private void cargar(HttpServletRequest request, HttpServletResponse response) {
          
         try {
             //To change body of generated methods, choose Tools | Templates.
-           String s=request.getParameter("busqueda");
+          
             PrintWriter out = response.getWriter();
             JSONObject o =new JSONObject ();
             List <libro> l=new ArrayList<libro>();
             libroModel t=new libroModel();
             l=t.listarLibros();
+            
+            Gson n=new Gson();
+            out.println(n.toJson(l));
+            out.flush();
+           
+            
+        } catch (IOException ex) {
+            Logger.getLogger(nuevo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(nuevo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(nuevo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+     private void buscar(HttpServletRequest request, HttpServletResponse response) {
+         String pro =request.getParameter("id");
+         
+        try {
+           
+            PrintWriter out = response.getWriter();
+            
+            JSONObject o =new JSONObject ();
+            List <libro> l=new ArrayList<libro>();
+            libroModel t=new libroModel();
+            l=t.buscarLibro(pro);
             
             Gson n=new Gson();
             out.println(n.toJson(l));

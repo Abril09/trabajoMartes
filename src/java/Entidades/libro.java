@@ -11,7 +11,7 @@ package Entidades;
  */
 public class libro {
     private int id_ejemplar;
-    private int isbn;
+    private String isbn;
     private String titulo;
     private String Estado;
     private String Categoria;
@@ -35,11 +35,11 @@ public class libro {
         this.id_ejemplar = id_ejemplar;
     }
 
-    public int getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 

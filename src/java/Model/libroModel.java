@@ -29,7 +29,7 @@ public class libroModel {
             while (rs.next()) {
                 
                 cl.setId_ejemplar(rs.getInt("id_ejemplar"));
-                cl.setIsbn(rs.getInt("ISBN"));
+                cl.setIsbn(rs.getString("ISBN"));
                 cl.setTitulo(rs.getString("titulo"));
                 cl.setEstado(rs.getString("Estado"));
                 cl.setCategoria(rs.getString("Categoria"));
@@ -64,7 +64,7 @@ public class libroModel {
             while (rs.next()) {
                 libro cl = new libro();
                 cl.setId_ejemplar(rs.getInt("id_ejemplar"));
-                cl.setIsbn(rs.getInt("ISBN"));
+                cl.setIsbn(rs.getString("ISBN"));
                 cl.setTitulo(rs.getString("titulo"));
                 cl.setEstado(rs.getString("Estado"));
                 cl.setCategoria(rs.getString("Categoria"));
@@ -97,7 +97,7 @@ public class libroModel {
             while (rs.next()) {
                 libro cl = new libro();
                 cl.setId_ejemplar(rs.getInt("id_ejemplar"));
-                cl.setIsbn(rs.getInt("ISBN"));
+                cl.setIsbn(rs.getString("ISBN"));
                 cl.setTitulo(rs.getString("titulo"));
                 cl.setEstado(rs.getString("Estado"));
                 cl.setCategoria(rs.getString("Categoria"));
