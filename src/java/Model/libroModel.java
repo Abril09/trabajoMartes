@@ -56,7 +56,7 @@ public class libroModel {
    public List<libro> buscarLibro(String busqueda) throws ClassNotFoundException, SQLException {
         List<libro> list = new ArrayList();
         try {
-            String Query = "select * from librosBiblioteca where  titulo like '%"+busqueda+"%'"+" or autor like '%"+busqueda+"%'"+" or Estado like '%"+busqueda+"%'"+" or ISBN like '%"+busqueda+"%'"+" or id_ejemplar like '%"+busqueda+"%'"+" or Categoria like '%"+busqueda+"%'"+" or ubicacion like '%"+busqueda+"%'";
+            String Query = "select * from librosBiblioteca where  titulo like '%"+busqueda+"%'"+" or autor like '%"+busqueda+"%'"+" or Estado like '%"+busqueda+"%'"+" or ISBN like '%"+busqueda+"%'"+" or id_ejemplar like '%"+busqueda+"%'"+" or Categoria like '%"+busqueda+"%'"+" or ubicacion like '%"+busqueda+"%'"+"group by id_ejemplar";
 
             Statement st = Conexion.obtener().createStatement();
             ResultSet rs = st.executeQuery(Query);

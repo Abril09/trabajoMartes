@@ -47,7 +47,7 @@ public class nuevo extends HttpServlet {
                     break;
                 case "buscar":
                      buscar(request,response);
-                    
+                    break;
                 default:
                     throw new AssertionError();
             }
