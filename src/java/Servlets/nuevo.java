@@ -48,6 +48,11 @@ public class nuevo extends HttpServlet {
                 case "buscar":
                      buscar(request,response);
                     break;
+                 case "libro":
+                     traerLibro(request,response);
+                  break;
+                 case "CrearEjemplar":
+                     CrearejEjemplar(request,response);
                 default:
                     throw new AssertionError();
             }
@@ -129,7 +134,6 @@ public class nuevo extends HttpServlet {
            
             PrintWriter out = response.getWriter();
             
-            JSONObject o =new JSONObject ();
             List <libro> l=new ArrayList<libro>();
             libroModel t=new libroModel();
             l=t.buscarLibro(pro);
@@ -147,6 +151,40 @@ public class nuevo extends HttpServlet {
             Logger.getLogger(nuevo.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+
+    private void traerLibro(HttpServletRequest request, HttpServletResponse response) {
+       String pro =request.getParameter("isbn");
+        try{
+            PrintWriter out = response.getWriter();
+            libro l=new libro();
+            libroModel t=new libroModel();
+            l=t.verLibro(pro);
+            Gson n=new Gson();
+           
+            out.println(n.toJson(l));
+            out.flush();
+        
+        
+        
+        }catch(Exception e){}
+
+    }
+
+    private void CrearejEjemplar(HttpServletRequest request, HttpServletResponse response) {
+            String ubicacion=request.getParameter("ubicacion");
+            String id_ejemplar=request.getParameter("id_isbn");
+        
+        try {
+            libroModel t=new libroModel();
+            libro l=new libro();
+            
+            int id=Integer.parseInt(id_ejemplar);
+            l.setUbicacion(ubicacion);
+            l.setId_ejemplar(id);
+            t.nuevoTipoCliente(l);
+        
+        }catch(Exception e){}
     }
 
 }
