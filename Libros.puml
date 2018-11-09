@@ -1,0 +1,87 @@
+@startuml
+annotation java.lang.Override
+class Entidades.Categoria
+class Entidades.autor
+class Entidades.libro
+class Entidades.objeditorial
+class Model.CategoriaModel
+class Model.Conexion
+class Model.autorModel
+class Model.editorialModel
+class Model.libroModel
+class Servlets.libroController
+class java.io.IOException
+class java.io.PrintWriter
+class java.sql.Connection
+class java.sql.DriverManager
+class java.sql.PreparedStatement
+class java.sql.ResultSet
+class java.sql.SQLException
+class java.sql.Statement
+class java.util.ArrayList
+class java.util.Collections
+class java.util.List
+class java.util.logging.Level
+class java.util.logging.Logger
+class javax.servlet.ServletException
+class javax.servlet.http.HttpServlet
+class javax.servlet.http.HttpServletRequest
+class javax.servlet.http.HttpServletResponse
+class org.json.simple.JSONObject
+Model.CategoriaModel ..> Entidades.Categoria
+Model.CategoriaModel ..> Entidades.libro
+Model.CategoriaModel ..> java.sql.ResultSet
+Model.CategoriaModel ..> java.sql.SQLException
+Model.CategoriaModel ..> java.sql.Statement
+Model.CategoriaModel ..> java.util.ArrayList
+Model.CategoriaModel ..> java.util.List
+Model.Conexion ..> java.sql.Connection
+Model.Conexion ..> java.sql.DriverManager
+Model.Conexion ..> java.sql.SQLException
+Model.autorModel ..> Entidades.Categoria
+Model.autorModel ..> Entidades.autor
+Model.autorModel ..> Entidades.libro
+Model.autorModel ..> java.sql.PreparedStatement
+Model.autorModel ..> java.sql.ResultSet
+Model.autorModel ..> java.sql.SQLException
+Model.autorModel ..> java.sql.Statement
+Model.autorModel ..> java.util.ArrayList
+Model.autorModel ..> java.util.List
+Model.editorialModel ..> Entidades.autor
+Model.editorialModel ..> Entidades.objeditorial
+Model.editorialModel ..> java.sql.PreparedStatement
+Model.editorialModel ..> java.sql.ResultSet
+Model.editorialModel ..> java.sql.SQLException
+Model.editorialModel ..> java.sql.Statement
+Model.editorialModel ..> java.util.ArrayList
+Model.editorialModel ..> java.util.List
+Model.libroModel ..> Entidades.libro
+Model.libroModel ..> java.sql.PreparedStatement
+Model.libroModel ..> java.sql.ResultSet
+Model.libroModel ..> java.sql.SQLException
+Model.libroModel ..> java.sql.Statement
+Model.libroModel ..> java.util.ArrayList
+Model.libroModel ..> java.util.List
+Servlets.libroController ..> java.lang.Override
+Servlets.libroController ..> Entidades.Categoria
+Servlets.libroController ..> Entidades.autor
+Servlets.libroController ..> Entidades.libro
+Servlets.libroController ..> Entidades.objeditorial
+Servlets.libroController ..> Model.CategoriaModel
+Servlets.libroController ..> Model.autorModel
+Servlets.libroController ..> Model.editorialModel
+Servlets.libroController ..> Model.libroModel
+Servlets.libroController ..> java.io.IOException
+Servlets.libroController ..> java.io.PrintWriter
+Servlets.libroController ..> java.sql.SQLException
+Servlets.libroController ..> java.util.ArrayList
+Servlets.libroController ..> java.util.Collections
+Servlets.libroController ..> java.util.List
+Servlets.libroController ..> java.util.logging.Level
+Servlets.libroController ..> java.util.logging.Logger
+Servlets.libroController ..> javax.servlet.ServletException
+Servlets.libroController --|> javax.servlet.http.HttpServlet
+Servlets.libroController ..> javax.servlet.http.HttpServletRequest
+Servlets.libroController ..> javax.servlet.http.HttpServletResponse
+Servlets.libroController ..> org.json.simple.JSONObject
+@enduml

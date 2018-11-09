@@ -133,5 +133,73 @@ public class libroModel {
            
     Conexion.cerrar();
        }
-//  } 
+        public void nuevoISBN(libro c) throws ClassNotFoundException, SQLException{
+     String query="INSERT INTO Libro_isbn(id_libro,ISBN, titulo,id_cat,id_autor,id_editorial) values(null,?,?,?,?,?)";
+            PreparedStatement st=Conexion.obtener().prepareStatement(query);
+           int id_cat=Integer.parseInt(c.getCategoria());
+           int id_autor=Integer.parseInt(c.getAutor());
+           int id_editorial=Integer.parseInt(c.getEditorial());
+            st.setString(1, c.getIsbn());
+            st.setString(2, c.getTitulo());
+             st.setInt(3,id_cat);
+            st.setInt(4,id_autor);
+            st.setInt(5,id_editorial);          
+            
+            st.executeUpdate();
+           
+    Conexion.cerrar();
+       }
+       
+          public String ultimoIsbn() throws ClassNotFoundException, SQLException {
+          String index="";
+          
+           
+        try {
+            String Query = "select max(id_libro) as id from libro_isbn;";
+
+            Statement st = Conexion.obtener().createStatement();
+            ResultSet rs = st.executeQuery(Query);
+            index=rs.getString("id");
+          
+        } catch (Exception e) {
+            //colcoar exepcion//
+            
+
+        } finally {
+            Conexion.cerrar();
+
+        }
+
+           
+    return index;
+    }  
+          
+     
+          public String ultimoEjemplar() throws ClassNotFoundException, SQLException {
+          String index="";
+          
+           
+        try {
+            String Query = "select max(id_ejemplar) as id from libro_ejemplar;";
+
+            Statement st = Conexion.obtener().createStatement();
+            ResultSet rs = st.executeQuery(Query);
+            index=rs.getString("id");
+          
+        } catch (Exception e) {
+            //colcoar exepcion//
+            
+
+        } finally {
+            Conexion.cerrar();
+
+        }
+
+           
+    return index;
+    }  
+       
+
+       
+
 }
