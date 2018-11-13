@@ -32,13 +32,8 @@
                                 "<td>" + obj[i].ubicacion + " </td> " +
                                 "<td>" + obj[i].Categoria + " </td> " +
                                 "<td>" +
-                                "<button type='button' class='btn btn-dark' data-toggle='modal' data-target='#ModalCenter' onclick='main(" + obj[i].isbn + ")' >Editar</button>"+
-                                "</td>" +      
-                                "<td>" +
-                                "<button type='button' class='btn btn-dark' data-toggle='modal' data-target='#ModalCenter' onclick='main(" + obj[i].id_ejemplar+ ")' >Detalle</button>"+
-                                "</td>" +
-                                "<td>" +      
-                                "<button type='button' class='btn btn-dark' data-toggle='modal' data-target='#ModalCenter' onclick='main(" + obj[i].isbn + ")' >Asignar</button>"+
+                                "<button type='button' class='btn btn-dark' data-toggle='modal' data-target='#ModalCenter' onclick='main(" + obj[i].isbn + ")' >Detalle</button>"+
+                       
 
                                  "</td>" +
                                   "</tr>";
@@ -108,7 +103,12 @@ function data(isbn) {
                             Reseña: data["items"][0]["searchInfo"]["textSnippet"]
                         };
 
-                       
+                        $("#desc").text("Reseña" + "\n" + libro.Reseña)
+                        $("#titulo").text("Titulo:  " + libro.Titulo + "     " + "ISBN: " + libro.ISBN)
+                        $("#as").attr("src", libro.Imagen)
+                        $("#dat3").text("Autor:  " + libro.Autor)
+                        $("#isbn").text("ISBN:   " + libro.ISBN)
+                        $("#dat2").text("Año:   " + libro.Año)
 
 
                         if (libro.Descripcion != null) {

@@ -69,6 +69,15 @@ public class libroController extends HttpServlet {
                    case "editorial":
                      editorial(request,response);
                      break;
+                      case "borrar":
+                       borrar(request,response);
+                     break;
+                     case "getLibro":
+                       getLibro(request,response);
+                     break;
+                      case "actualizar":
+                       Actualizar(request,response);
+                     break;
                 default:
                     throw new AssertionError();
             }
@@ -384,6 +393,71 @@ public class libroController extends HttpServlet {
         } catch(Exception e){
             response.sendRedirect("index.jsp");
         }
+    }
+
+    private void borrar(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            
+            String probar=request.getParameter("id_ejemplar");
+            PrintWriter outs = response.getWriter();
+            libroModel con=new libroModel();
+            int id=Integer.parseInt(probar);
+            int res=con.borrarEjemplar(id);
+            
+            outs.print("exitoso");
+            
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(libroController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(libroController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
+      private void getLibro(HttpServletRequest request, HttpServletResponse response) {
+       String pro =request.getParameter("id_ejemplar");
+        try{
+            PrintWriter out = response.getWriter();
+            libro l=new libro();
+            libroModel t=new libroModel();
+            l=t.LibroActualizar(pro);
+            Gson n=new Gson();
+           
+            out.println(n.toJson(l));
+            out.flush();
+        
+        
+        
+        }catch(Exception e){}
+
+    }
+      private void Actualizar(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+      String ubicacion=request.getParameter("ubicacion");
+      String Estado=request.getParameter("id_estado");
+      PrintWriter out = response.getWriter();
+      String Id_ejemplar = request.getParameter("id_ejemplar");
+      int id=Integer.parseInt(Id_ejemplar);
+
+        try{
+               libro l=new libro();
+               l.setId_ejemplar(0);
+               libroModel t=new libroModel();
+            
+               l.setUbicacion(ubicacion);
+               l.setEstado("1");
+               l.setId_ejemplar(id);
+            
+               t.actualizarLibro(l);
+              
+                response.sendRedirect("index.jsp");
+        
+        
+        }catch(Exception e){
+        
+        }
+
     }
 
 }

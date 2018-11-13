@@ -22,7 +22,7 @@ public class libroModel {
           libro cl = new libro();
            
         try {
-            String Query = "SELECT * FROM ISBN_libro  where Isbn="+isbn;
+            String Query = "SELECT * FROM ISBN_libro  where Isbn="+isbn ;
 
             Statement st = Conexion.obtener().createStatement();
             ResultSet rs = st.executeQuery(Query);
@@ -198,8 +198,67 @@ public class libroModel {
            
     return index;
     }  
+       public int borrarEjemplar(int id) throws ClassNotFoundException, SQLException{
+           int respuesta=0;
+           try{
+        String query="delete from libro_ejemplar where id_ejemplar="+id;
+            PreparedStatement st=Conexion.obtener().prepareStatement(query);
+                                       
+            st.executeUpdate();
+           respuesta=1;
+           }
+         catch(Exception e){
+         }finally{
+           Conexion.cerrar();
+           }
+           return respuesta;
+           
+    
+       }
        
+         public libro LibroActualizar(String busqueda) throws ClassNotFoundException, SQLException {
+        libro cl = new libro();
+        try {
+            String Query = "select * from librosBiblioteca where  id_ejemplar="+busqueda;
 
+            Statement st = Conexion.obtener().createStatement();
+            ResultSet rs = st.executeQuery(Query);
+
+            
+                
+                cl.setId_ejemplar(rs.getInt("id_ejemplar"));
+                cl.setIsbn(rs.getString("ISBN"));
+                cl.setTitulo(rs.getString("titulo"));
+                cl.setEstado(rs.getString("Estado"));
+                cl.setCategoria(rs.getString("Categoria"));
+                cl.setAutor(rs.getString("Autor"));
+                cl.setEditorial(rs.getString("Editorial"));
+              cl.setUbicacion(rs.getString("ubicacion"));
+
+               
+            
+        } catch (Exception e) {
+            //colcoar exepcion//
+
+        } finally {
+            Conexion.cerrar();
+            
+
+        }
+
+           
+    return cl;
+    }
+       
+public void actualizarLibro(libro c) throws ClassNotFoundException, SQLException{
+     String query="UPDATE libro_Ejemplar SET id_Estado='"+c.getEstado()+"',ubicacion='"+c.getUbicacion()+"' WHERE id_ejemplar ='"+c.getId_ejemplar()+"'";
+            PreparedStatement st=Conexion.obtener().prepareStatement(query);
+          
+            st.executeUpdate();
+            
+            
+    Conexion.cerrar();
+       }
        
 
 }
